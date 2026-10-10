@@ -1,0 +1,6 @@
+1. Create GitHub repo
+2. Upload index.html, .nojekyll, README.md
+3. Settings > Pages
+4. Source: Deploy from a branch
+5. Branch: main / root
+6. Save
