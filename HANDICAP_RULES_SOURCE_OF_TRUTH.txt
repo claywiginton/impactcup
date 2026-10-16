@@ -1,0 +1,75 @@
+IMPACT CUP 2026 - HANDICAP RULES SOURCE OF TRUTH
+Version: 2026-10-15 USGA/WHS Source of Truth v1
+
+1. COURSE INPUTS
+- Tee: No. 2 men.
+- 18-hole published rating/slope: 71.6 / 143.
+- Tournament 9-hole inputs: Front 35.8 / 137 / Par 36; Back 35.8 / 149 / Par 36.
+- Published men's stroke-index row used by the tournament:
+  H1 13, H2 5, H3 11, H4 7, H5 15, H6 1, H7 3, H8 17, H9 9,
+  H10 8, H11 12, H12 6, H13 18, H14 16, H15 2, H16 10, H17 14, H18 4.
+- Front allocation order: 6, 7, 2, 4, 9, 3, 1, 5, 8.
+- Back allocation order: 15, 18, 12, 10, 16, 11, 17, 14, 13.
+- If the official tournament-day scorecard differs, the official scorecard controls and the app must be updated before play.
+
+2. 9-HOLE COURSE HANDICAP - USGA RULE 6.1b
+Course Handicap = (Handicap Index / 2, rounded to nearest tenth) x (9-hole Slope / 113)
+                  + (9-hole Course Rating - 9-hole par).
+Retain the full calculated Course Handicap for Playing Handicap calculations.
+For plus Handicap Indexes, preserve the plus sign through the calculation. In code they are stored as negative values.
+
+3. MATCH 1 - 2-PLAYER SCRAMBLE / CAPTAIN'S CHOICE
+Official USGA allowance: 35% of the lower unrounded Course Handicap + 15% of the higher unrounded Course Handicap.
+Impact Cup head-to-head match-play implementation:
+- Calculate each side's unrounded 35%/15% team value.
+- Lower team value plays from scratch.
+- Subtract the two UNROUNDED team values.
+- Round the absolute difference ONCE to the nearest whole stroke.
+- Allocate strokes in ascending order of the published Front-9 stroke indexes.
+Reason: USGA guidance says handicap allowances should be applied to unrounded values and, in match-play formats where the lowest side plays from scratch, to the unrounded difference. USGA does not publish a separate worked 2v2 scramble-match-play example, so this final relative-stroke step is a stated Term of the Competition.
+
+4. MATCH 2 - FOUR-BALL MATCH PLAY
+Official USGA allowance: 90%.
+- Calculate all four players' unrounded Back-9 Course Handicaps.
+- Lowest unrounded Course Handicap plays from scratch.
+- For each other player: (player unrounded CH - lowest unrounded CH) x 90%.
+- Round each resulting Playing Handicap to the nearest whole number.
+- Allocate each player's strokes in ascending order of the published Back-9 stroke indexes.
+
+5. MATCH 3 - INDIVIDUAL MATCH PLAY
+Official USGA allowance: 100%.
+- Calculate each player's unrounded Front-9 Course Handicap.
+- Lower player plays from scratch.
+- Calculate the difference between the two UNROUNDED Course Handicaps.
+- Apply 100% and round the result ONCE to the nearest whole stroke.
+Impact Cup 6-hole rule:
+- The official 9-hole difference is allocated using the full Front-9 stroke-index order.
+- Only strokes landing on Holes 1-6 are used.
+- No 6/9 proration or compressed six-hole ranking is used.
+
+6. STROKE ALLOCATION
+USGA Appendix E: use the published stroke-index allocation. For nine-hole play on an 18-hole course, strokes are taken in ascending order from the published 18-hole allocation.
+If more than nine strokes are due on a nine-hole side, every hole receives one before the sequence repeats for additional strokes.
+
+7. PLUS HANDICAPS
+Plus handicaps stay plus throughout the calculation. Handicap allowances move both plus and non-plus values toward zero. In match play, the lowest relative value is set to scratch and the opponent receives the resulting difference.
+
+8. FINALE - 10v10 ALTERNATE SHOT
+Impact Cup Committee Rule: SCRATCH.
+USGA/WHS publishes a Foursomes allowance for two partners sharing one ball, but not for a 10-player side sharing one ball. No handicap strokes are applied to the finale.
+
+OFFICIAL USGA SOURCES
+- Rule 6.1b (9-hole Course Handicap):
+  https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/6%201b%209%20holes.htm
+- Rule 6.2a (Playing Handicap / unrounded Course Handicap):
+  https://www.usga.org/handicapping/roh/Content/rules/6%202a%20Standard%20Calculation.htm
+- Applying Handicap Allowances / unrounded difference:
+  https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/Committee%20Content/USGA/LG_R7j.htm
+- Appendix C / recommended allowances:
+  https://www.usga.org/content/dam/usga/pdf/Handicap-Allowances-detailed.pdf
+- Four-Ball Match Play:
+  https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/Committee%20Content/USGA/LG_R7g11.htm
+- Individual Match Play:
+  https://www.usga.org/handicapping/roh/Content/rules/Committee%20Content/USGA/LG_R7g10.htm
+- Appendix E / Stroke Index Allocation:
+  https://www.usga.org/handicapping/roh/Content/rules/Appendix%20E%20Stroke%20Index%20Allocation.htm

@@ -1,0 +1,27 @@
+INDEPENDENT HANDICAP ENGINE AUDIT
+Ruleset: 2026-10-15 USGA/WHS Source of Truth v1
+
+Reference implementation: Python, separate from browser JavaScript.
+
+Exhaustive cases evaluated:
+- Match 1 pair-vs-pair combinations: 2025
+- Match 2 pair-vs-pair combinations: 2025
+- Legal same-tier Singles matchups: 50
+
+Critical checks:
+- Joshua Delo halved Index (internal): -0.9 = +0.9
+- Joshua Delo Front-9 unrounded CH: -1.291150
+- Joshua Delo Back-9 unrounded CH: -1.386726
+- Delo/Howell vs Culpepper/Spink Match 1: 0 strokes
+- Haddon/Howell vs Clay/Spink Match 1: 0 strokes
+
+Important: This audit evaluates the frozen source-of-truth formulas. The source-of-truth text is included beside the app and should control any future code changes.
+
+BROWSER ENGINE CROSS-CHECK
+- Actual JavaScript handicap functions were extracted from index.html and executed in Node.
+- Results were compared against the independent Python reference implementation.
+- Match 1 mismatches: 0 / 2,025
+- Match 2 mismatches: 0 / 2,025
+- Singles mismatches: 0 / 50
+
+This build intentionally supersedes the prior round-each-scramble-team-first implementation. Under the frozen source-of-truth rule, Haddon Wiginton/Matt Howell vs Clay Wiginton/Brad Spink is EVEN because the difference between the two UNROUNDED 35%/15% team values rounds to zero.
